@@ -12,7 +12,7 @@ public class Player : NetworkBehaviour {
     private GameManager _gameMgr;
     private Camera _camera;
     public float movementSpeed = .5f;
-    public float rotationSpeed = 1f;
+    private float rotationSpeed = 1f;
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class Player : NetworkBehaviour {
         if (!IsServer && !IsHost) return;
 
         PositionChange.Value = posChange;
-        PositionChange.Value = rotChange;
+        RotationChange.Value = rotChange;
     }
 
 
@@ -64,7 +64,7 @@ public class Player : NetworkBehaviour {
             y_rot = Input.GetAxis("Horizontal");
         }
 
-        Vector3 moveVect = new Vector3(z_move, 0, x_move);
+        Vector3 moveVect = new Vector3(x_move, 0, z_move);
         moveVect *= movementSpeed;
 
         Vector3 rotVect = new Vector3(0, y_rot, 0);
